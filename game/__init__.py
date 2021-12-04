@@ -1,10 +1,41 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #       
-#       Copyright 2021 Joseph Hewitt <pyrrho12@yahoo.ca>
+#       Copyright 2014 Joseph Hewitt <pyrrho12@yahoo.ca>
 #       
+#       This program is free software; you can redistribute it and/or modify
+#       it under the terms of the GNU General Public License as published by
+#       the Free Software Foundation; either version 2 of the License, or
+#       (at your option) any later version.
+#       
+#       This program is distributed in the hope that it will be useful,
+#       but WITHOUT ANY WARRANTY; without even the implied warranty of
+#       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#       GNU General Public License for more details.
+#       
+#       You should have received a copy of the GNU General Public License
+#       along with this program; if not, write to the Free Software
+#       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+#       MA 02110-1301, USA.
+#       
+# 
 
-VERSION_ID = "0.5.0 Ahpla"
+import narrator
+import context
+import maps
+import pygame
+import pygwrap
+import rpgmenu
+import campaign
+import util
+import cPickle
+import image
+import glob
+import random
+import chargen
+import charloader
+
+VERSION_ID = "0.5.0 Alpha"
 
 
 class PosterRedraw( object ):
@@ -99,7 +130,7 @@ def load_campaign( screen ):
     if cmd:
         pygwrap.please_stand_by( screen, "Loading..." )
         with open( cmd, "rb" ) as f:
-            camp = pickle.load( f )
+            camp = cPickle.load( f )
         if camp:
             camp.play( screen )
 
@@ -108,11 +139,11 @@ def test_campaign_generator( screen ):
     for t in range( 100 ):
         nart = narrator.Narrative( camp, narrator.plots.PlotState(rank=t%5+1), adv_type="SHORTIE",start_rank=t%5+1, end_rank=5 )
         #nart.build()
-        print(t)
+        print t
 
     for p in narrator.UNSORTED_PLOT_LIST:
         if p._used > 0:
-            print("{} [{}]".format( p, p._used ))
+            print "{} [{}]".format( p, p._used )
 
 def main():
     pygame.init()
