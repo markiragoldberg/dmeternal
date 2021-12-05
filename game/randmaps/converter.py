@@ -1,6 +1,6 @@
 from .. import maps
 import random
-import plasma
+from . import plasma
 
 #  **********************
 #  ***   CONVERTERS   ***

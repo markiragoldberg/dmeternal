@@ -1,7 +1,7 @@
 import glob
-import util
-import cPickle
-import charsheet
+from . import util
+import pickle
+from . import charsheet
 import os
 
 def load_characters( party, screen, predraw=None, delete_file=True, max_party_size=4 ):
@@ -10,7 +10,7 @@ def load_characters( party, screen, predraw=None, delete_file=True, max_party_si
     charsheets = dict()
     for fname in file_list:
         with open( fname, "rb" ) as f:
-            pc = cPickle.load( f )
+            pc = pickle.load( f )
         if pc:
             pc_list.append( pc )
             charsheets[ pc ] = charsheet.CharacterSheet( pc , screen=screen )

@@ -1,4 +1,4 @@
-import base
+from . import base
 from .. import stats
 from .. import items
 from .. import dialogue
@@ -10,8 +10,8 @@ from .. import animobs
 from .. import targetarea
 from .. import aibrain
 import random
-import animals
-import undead
+from . import animals
+from . import undead
 
 #  *******************************
 #  ***   ENCOUNTER  LEVEL  1   ***

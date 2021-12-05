@@ -131,7 +131,7 @@ class HotMap( object ):
                     vals.append( '{:<8}'.format( self.map[x][y] ) )
                 else:
                     vals.append( "XXX" )
-            print " ".join( vals )
+            print(" ".join( vals ))
 
 
 class AvoidMap( HotMap ):
@@ -163,7 +163,7 @@ class MoveMap( HotMap ):
 
 if __name__=='__main__':
     import timeit
-    import maps
+    from . import maps
     import random
     import pygame
 
@@ -195,8 +195,8 @@ if __name__=='__main__':
     t1 = timeit.Timer( OldWay( myscene ) )
     t2 = timeit.Timer( NewWay( myscene ) )
 
-    print t1.timeit(100)
-    print t2.timeit(100)
+    print(t1.timeit(100))
+    print(t2.timeit(100))
 
 
 

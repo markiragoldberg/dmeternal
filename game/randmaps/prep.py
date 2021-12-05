@@ -1,5 +1,5 @@
 from .. import maps
-import plasma
+from . import plasma
 
 #   ******************
 #   ***  PREPPERS  ***

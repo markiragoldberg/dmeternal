@@ -1,10 +1,10 @@
 from .. import context
-import converter
-import mutator
+from . import converter
+from . import mutator
 from .. import maps
-import prep
+from . import prep
 import random
-import decor
+from . import decor
 from .. import namegen
 
 # An Architecture gear is used to automatically modify a scene/scenegen combo
@@ -35,7 +35,7 @@ class Architecture( object ):
         self.prepare = prepare
     def __call__( self, scene, scenegen, primary=False ):
         # First, copy the sprite sheets.
-        for k,v in self.sprites.iteritems():
+        for k,v in self.sprites.items():
             scene.sprites[k] = v
         # Second, if this is the primary, copy over environmental info.
         if primary:
@@ -93,10 +93,10 @@ class CavernDungeon( Architecture ):
         self.sprites[maps.SPRITE_CHEST] = "terrain_chest_wood.png"
         # Do the custom decorating now.
         if fac:
-            if fac.primary in self.CUSTOM_DECOR_TYPES.keys():
+            if fac.primary in list(self.CUSTOM_DECOR_TYPES.keys()):
                 a,b = self.CUSTOM_DECOR_TYPES[ fac.primary ]
                 self.decorate = a(**b)
-            elif fac.secondary in self.CUSTOM_DECOR_TYPES.keys():
+            elif fac.secondary in list(self.CUSTOM_DECOR_TYPES.keys()):
                 a,b = self.CUSTOM_DECOR_TYPES[ fac.secondary ]
                 self.decorate = a(**b)
         self.name = random.choice( self.NAME_PATTERNS ).format( namegen.random_style_name() )
@@ -121,10 +121,10 @@ class BuildingDungeon( Architecture ):
         self.sprites[maps.SPRITE_FLOOR] = "terrain_floor_dungeon.png"
         self.sprites[maps.SPRITE_CHEST] = "terrain_chest_wood.png"
         if fac:
-            if fac.primary in self.CUSTOM_DECOR_TYPES.keys():
+            if fac.primary in list(self.CUSTOM_DECOR_TYPES.keys()):
                 a,b = self.CUSTOM_DECOR_TYPES[ fac.primary ]
                 self.decorate = a(**b)
-            elif fac.secondary in self.CUSTOM_DECOR_TYPES.keys():
+            elif fac.secondary in list(self.CUSTOM_DECOR_TYPES.keys()):
                 a,b = self.CUSTOM_DECOR_TYPES[ fac.secondary ]
                 self.decorate = a(**b)
         self.name = random.choice( self.NAME_PATTERNS ).format( namegen.random_style_name() )
@@ -149,10 +149,10 @@ class TunnelDungeon( Architecture ):
         self.sprites[maps.SPRITE_FLOOR] = "terrain_floor_dungeon.png"
         self.sprites[maps.SPRITE_CHEST] = "terrain_chest_wood.png"
         if fac:
-            if fac.primary in self.CUSTOM_DECOR_TYPES.keys():
+            if fac.primary in list(self.CUSTOM_DECOR_TYPES.keys()):
                 a,b = self.CUSTOM_DECOR_TYPES[ fac.primary ]
                 self.decorate = a(**b)
-            elif fac.secondary in self.CUSTOM_DECOR_TYPES.keys():
+            elif fac.secondary in list(self.CUSTOM_DECOR_TYPES.keys()):
                 a,b = self.CUSTOM_DECOR_TYPES[ fac.secondary ]
                 self.decorate = a(**b)
         self.name = random.choice( self.NAME_PATTERNS ).format( namegen.random_style_name() )

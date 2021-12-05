@@ -22,7 +22,7 @@ import copy
 import math
 
 # For the line drawer, for the Cone object...
-import animobs
+from . import animobs
 
 
 
@@ -427,6 +427,6 @@ if __name__=="__main__":
     t1 = timeit.Timer( UseRound() )
     t2 = timeit.Timer( UseInt() )
 
-    print t1.timeit(10000000)
-    print t2.timeit(10000000)
+    print(t1.timeit(10000000))
+    print(t2.timeit(10000000))
 

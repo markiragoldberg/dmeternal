@@ -1,20 +1,20 @@
-import base
-from base import SOLAR, EARTH, WATER, FIRE, AIR, LUNAR, Spell
+from . import base
+from .base import SOLAR, EARTH, WATER, FIRE, AIR, LUNAR, Spell
 
 COLORS = ( SOLAR, EARTH, WATER, FIRE, AIR, LUNAR )
 COLOR_NAME = ( "Solar", "Earth", "Water", "Fire", "Air", "Lunar" )
 
-import airspells
-import druidspells
-import earthspells
-import firespells
-import lunarspells
-import magespells
-import necrospells
-import otherspells
-import priestspells
-import solarspells
-import waterspells
+from . import airspells
+from . import druidspells
+from . import earthspells
+from . import firespells
+from . import lunarspells
+from . import magespells
+from . import necrospells
+from . import otherspells
+from . import priestspells
+from . import solarspells
+from . import waterspells
 
 # Compile the spells into a useful list.
 SPELL_LIST = []

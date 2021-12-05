@@ -1,5 +1,5 @@
 
-from plots import Plot
+from .plots import Plot
 import collections
 import random
 import inspect
@@ -78,28 +78,28 @@ def harvest( mod ):
             PLOT_LIST[ o.LABEL ].append( o )
             UNSORTED_PLOT_LIST.append( o )
 
-import advstub
-import bardicbits
-import citybits
-import citystories
-import complication
-import conclusion
-import connections
-import dungeonbits
-import dungeonlevel
-import encounters
-import getterbits
-import intros
-import puzzlebits
-import resolution
-import resources
-import rewards
-import shortiebits
-import sidestories
-import socialbits
-import specencounters
-import specfeatures
-import spoonybits
+from . import advstub
+from . import bardicbits
+from . import citybits
+from . import citystories
+from . import complication
+from . import conclusion
+from . import connections
+from . import dungeonbits
+from . import dungeonlevel
+from . import encounters
+from . import getterbits
+from . import intros
+from . import puzzlebits
+from . import resolution
+from . import resources
+from . import rewards
+from . import shortiebits
+from . import sidestories
+from . import socialbits
+from . import specencounters
+from . import specfeatures
+from . import spoonybits
 harvest( advstub )
 harvest( bardicbits )
 harvest( citybits )

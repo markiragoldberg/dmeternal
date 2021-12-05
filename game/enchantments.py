@@ -1,10 +1,10 @@
-import stats
-import image
-import effects
-import animobs
+from . import stats
+from . import image
+from . import effects
+from . import animobs
 
 # Enumerated constants for dispelling types.
-COMBAT, MAGIC, POISON, DAILY, CURSE = range( 5 )
+COMBAT, MAGIC, POISON, DAILY, CURSE = list(range( 5))
 
 class Enchantment( object ):
     NAME = ""

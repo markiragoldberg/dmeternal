@@ -7,16 +7,16 @@ from .. import waypoints
 import math
 from .. import container
 
-import plasma
-import anchors
-import mutator
-import decor
-import gapfiller
-import converter
-import prep
-import rooms
-from rooms import Room
-import architect
+from . import plasma
+from . import anchors
+from . import mutator
+from . import decor
+from . import gapfiller
+from . import converter
+from . import prep
+from . import rooms
+from .rooms import Room
+from . import architect
 
 
 
@@ -119,8 +119,8 @@ class SubtleMonkeyTunnelScene( RandomScene ):
                 myrect = pygame.Rect( 0, 0, r.width, r.height )
                 count = 0
                 while ( count < 1000 ) and not r.area:
-                    myrect.x = random.choice( range( self.area.x , self.area.x + self.area.width - r.width ) )
-                    myrect.y = random.choice( range( self.area.y , self.area.y + self.area.height - r.height ) )
+                    myrect.x = random.choice( list(range( self.area.x , self.area.x + self.area.width - r.width)) )
+                    myrect.y = random.choice( list(range( self.area.y , self.area.y + self.area.height - r.height)) )
                     if myrect.inflate(8,8).collidelist( closed_area ) == -1:
                         r.area = myrect
                         closed_area.append( myrect )

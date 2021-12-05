@@ -20,7 +20,7 @@ import random
 #
 
 def absorb( gram, othergram ):
-    for k,v in othergram.iteritems():
+    for k,v in othergram.items():
         if k not in gram:
             gram[k] = list()
         gram[k] += v
@@ -332,6 +332,6 @@ if __name__=='__main__':
         }
     for t in range( 50 ):
         mygram = FailGrammar("[HELLO]",GRAMGRAM)
-        print str( mygram )
+        print(str( mygram ))
 
 

@@ -1,7 +1,7 @@
-import image
-import pygwrap
+from . import image
+from . import pygwrap
 import pygame
-import util
+from . import util
 
 def get_line( x1, y1, x2, y2):
     # Bresenham's line drawing algorithm, as obtained from RogueBasin.

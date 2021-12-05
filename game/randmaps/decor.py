@@ -162,8 +162,8 @@ class MonsterDec( object ):
         gb.monster_zones.append( area )
         if random.randint(1,3)!=1:
             for t in range( random.randint(1,3) ):
-                x = random.choice( range( area.x , area.x + area.width ) )
-                y = random.choice( range( area.y , area.y + area.height ) )
+                x = random.choice( list(range( area.x , area.x + area.width)) )
+                y = random.choice( list(range( area.y , area.y + area.height)) )
                 if gb.on_the_map(x,y) and not gb.map[x][y].blocks_walking() and not gb.map[x][y].wall and not gb.map[x][y].decor:
                     # This is an empty space. Add some carnage.
                     gb.map[x][y].decor = random.choice(self.FLOOR_DECOR)

@@ -1,8 +1,9 @@
 import random
-import stats
-import characters
-import context
-import namegen
+import math
+from . import stats
+from . import characters
+from . import context
+from . import namegen
 
 class Faction( object ):
     def __init__( self, name="Da Fakshun", primary=context.HAB_EVERY, secondary=None, reaction=0 ):
@@ -15,9 +16,9 @@ class Faction( object ):
         if self.primary:
             if force_membership:
                 req[ self.primary ] = True
-            elif self.primary not in req.keys():
+            elif self.primary not in list(req.keys()):
                 req[ self.primary ] = context.MAYBE
-        if self.secondary and self.secondary not in req.keys():
+        if self.secondary and self.secondary not in list(req.keys()):
             req[ self.secondary ] = context.MAYBE
     def __str__( self ):
         return self.name
@@ -105,16 +106,16 @@ class AntagonistFaction( Faction ):
         #  name a passable dungeon name.
         super(AntagonistFaction, self).__init__(reaction=-50)
         self.primary = primary or random.choice( self.ANTAGONIST_PRIMARY )
-        if self.primary in self.ANTAGONIST_SECONDARY.keys():
+        if self.primary in list(self.ANTAGONIST_SECONDARY.keys()):
             self.secondary = random.choice( self.ANTAGONIST_SECONDARY[ self.primary ] )
         else:
             self.secondary = random.choice( self.RANDOM_SECONDARY )
         orgs = ["League",] + self.ANTAGONIST_ORG.get( self.primary, [] ) * 5 + self.ANTAGONIST_ORG.get( self.secondary, [] ) * 2
         adjectives = ["Evil",] + self.ANTAGONIST_ADJECTIVE.get( self.primary, [] ) * 2 + self.ANTAGONIST_ADJECTIVE.get( self.secondary, [] ) * 2
         icons = ["Doom",] + self.ANTAGONIST_ICON.get( self.primary, [] ) * 3 + self.ANTAGONIST_ICON.get( self.secondary, [] ) * 2
-        if self.primary in self.ANTAGONIST_VOICE.keys():
+        if self.primary in list(self.ANTAGONIST_VOICE.keys()):
             propername = self.ANTAGONIST_VOICE[ self.primary ].gen_word()
-        elif self.secondary in self.ANTAGONIST_VOICE.keys():
+        elif self.secondary in list(self.ANTAGONIST_VOICE.keys()):
             propername = self.ANTAGONIST_VOICE[ self.secondary ].gen_word()
         else:
             propername = namegen.random_style_name()
@@ -255,7 +256,7 @@ class PolisFaction( Faction ):
         #  name a passable dungeon name.
         super(PolisFaction, self).__init__(reaction=0)
         self.primary = primary or random.choice( self.FRIENDLY_PRIMARY )
-        if self.primary in self.FRIENDLY_SECONDARY.keys():
+        if self.primary in list(self.FRIENDLY_SECONDARY.keys()):
             self.secondary = random.choice( self.FRIENDLY_SECONDARY[ self.primary ] )
         else:
             self.secondary = random.choice( self.RANDOM_SECONDARY )
@@ -263,9 +264,9 @@ class PolisFaction( Faction ):
         adjectives = ["Nice",] + self.FRIENDLY_ADJECTIVE.get( self.primary, [] ) * 2 + self.FRIENDLY_ADJECTIVE.get( self.secondary, [] ) * 2
         icons = ["Peace",] + self.FRIENDLY_ICON.get( self.primary, [] ) * 3 + self.FRIENDLY_ICON.get( self.secondary, [] ) * 2
 
-        if self.primary in self.FRIENDLY_VOICE.keys():
+        if self.primary in list(self.FRIENDLY_VOICE.keys()):
             propername = self.FRIENDLY_VOICE[ self.primary ].gen_word()
-        elif self.secondary in self.FRIENDLY_VOICE.keys():
+        elif self.secondary in list(self.FRIENDLY_VOICE.keys()):
             propername = self.FRIENDLY_VOICE[ self.secondary ].gen_word()
         else:
             propername = namegen.random_style_name()
@@ -320,12 +321,12 @@ class Team( object ):
         # Scale the points based on the xp value of the monster, assuming
         # a normal rate of 100xp per rank.
         if mon_rank == 0:
-            print "ERROR: {} is the boss {}".format( self.boss, self.boss.ENC_LEVEL )
+            print("ERROR: {} is the boss {}".format( self.boss, self.boss.ENC_LEVEL ))
             if hasattr( self.boss, "monster_name" ):
-                print self.boss.monster_name
+                print(self.boss.monster_name)
             else:
-                print "Apparently an NPC boss..."
-            print self.boss.desc()
+                print("Apparently an NPC boss...")
+            print(self.boss.desc())
         m_pts = ( m_pts * xp_value ) // ( min( max_rank, mon_rank) * 100 )
         return m_pts
 
@@ -399,7 +400,7 @@ class Team( object ):
                 n = 1
                 pts = 0
 
-            for t in range( n ):
+            for t in range( math.floor(n) ):
                 horde.append( mclass(self) )
             mclass = nextmon
         return horde
@@ -431,6 +432,4 @@ if __name__=="__main__":
     for t in range( 100 ):
         adv = AntagonistFaction()
         names.append( adv.name )
-    print ", ".join( names )
-
-
+    print(", ".join( names ))

@@ -19,13 +19,13 @@
 #       MA 02110-1301, USA.
 #       
 # 
-import characters
+from . import characters
 import pygame
-import pygwrap
-import items
-import stats
-import rpgmenu
-import charsheet
+from . import pygwrap
+from . import items
+from . import stats
+from . import rpgmenu
+from . import charsheet
 import inspect
 
 
@@ -45,7 +45,7 @@ def give_starting_equipment( pc ):
             if pc.can_equip( item ) and item.is_better( default.get( item.slot , None ) ):
                 default[ item.slot ] = item
 
-    for k,item in default.iteritems():
+    for k,item in default.items():
         if pc.can_equip( item ):
             pc.contents.append( item )
             pc.contents.equip( item )

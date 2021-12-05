@@ -21,7 +21,7 @@
 HELLO,THREATEN,SHOP,SERVICE,INFO,PROBLEM,BRINGMESSAGE, REWARD, \
     GENERALSTORE,BLACKMARKET,WEAPON,HINT,INN,MAGICGOODS, \
     HEALING,PERSONAL,GOODNEWS,BADNEWS,QUESTION,ATTACK, \
-    TRUCE,GOODLUCK,LOCAL,TRAINING,ARMOR = range(25)
+    TRUCE,GOODLUCK,LOCAL,TRAINING,ARMOR = list(range(25))
 
 
 class ContextTag( tuple ):
@@ -100,7 +100,7 @@ SP_MOT_CONQUER_THE_WORLD = 1
 # ***   RANDOM  MAP  TAGS   ***
 # *****************************
 
-ENTRANCE, GOAL, CIVILIZED = range( 3 )
+ENTRANCE, GOAL, CIVILIZED = list(range( 3))
 
 # ******************************************
 # ***   Map/Monster  Description  Tags   ***
@@ -111,20 +111,20 @@ ENTRANCE, GOAL, CIVILIZED = range( 3 )
 # of a given kind is requested it should match that too.
 #
 # Habitat Tags- Linked to map generator
-HAB_EVERY, HAB_FOREST, HAB_CAVE, HAB_BUILDING, HAB_TUNNELS, HAB_DESERT = range(6)
+HAB_EVERY, HAB_FOREST, HAB_CAVE, HAB_BUILDING, HAB_TUNNELS, HAB_DESERT = list(range(6))
 
 # Map Type- not exactly habitat, but kind of related?
-MAP_WILDERNESS, MAP_DUNGEON, MAP_GOUP, MAP_GODOWN, MAP_ON_EDGE = range( 50,55 )
+MAP_WILDERNESS, MAP_DUNGEON, MAP_GOUP, MAP_GODOWN, MAP_ON_EDGE = list(range( 50,55))
 
 # Room Types
 ROOM_PUBLIC = 100
 
 # Setting Tags
-SET_EVERY, SET_RENFAN = range( 1000,1002 )
+SET_EVERY, SET_RENFAN = list(range( 1000,1002))
 
 # Description Tags- Linked to map sprite set and maybe map generator
 DES_EARTH, DES_AIR, DES_WATER, DES_FIRE, DES_SOLAR, DES_LUNAR, \
-  DES_ICE, DES_CIVILIZED = range(1200,1208)
+  DES_ICE, DES_CIVILIZED = list(range(1200,1208))
 
 # Type Tags
 #  MTY_UNDEAD can be summoned by Necromancer spells
@@ -132,20 +132,20 @@ DES_EARTH, DES_AIR, DES_WATER, DES_FIRE, DES_SOLAR, DES_LUNAR, \
 #  MTY_CONSTRUCT of levels 7-8 can be summoned by Animation spell
 MTY_BEAST, MTY_HUMANOID, MTY_FIGHTER, MTY_THIEF, MTY_PRIEST, MTY_MAGE, \
     MTY_UNDEAD, MTY_CREATURE, MTY_LEADER, MTY_CONSTRUCT, MTY_DEMON, MTY_CELESTIAL, \
-    MTY_PLANT, MTY_BOSS, MTY_DRAGON, MTY_ELEMENTAL = range(1300,1316)
+    MTY_PLANT, MTY_BOSS, MTY_DRAGON, MTY_ELEMENTAL = list(range(1300,1316))
 
 # Genus Tags. Note that these don't necessarily correspond to templates- a
 #  necromancer monster may be grouped with the undead, despite not being undead
 #  itself. Also a monster can have more than one genus because in Python we
 #  believe in multiple inheritence.
 GEN_GIANT, GEN_GOBLIN, GEN_CHAOS, GEN_UNDEAD, GEN_NATURE, GEN_DRAGON, \
-    GEN_KINGDOM, GEN_TERRAN, GEN_FAERIE, GEN_IGNAN = range( 1400,1410 )
+    GEN_KINGDOM, GEN_TERRAN, GEN_FAERIE, GEN_IGNAN = list(range( 1400,1410))
 
 # Summon Tags. Used to mark individual monsters for specific spells.
-SUMMON_FLAMINGSWORD, SUMMON_ELEMENTAL = range( 2000, 2002 )
+SUMMON_FLAMINGSWORD, SUMMON_ELEMENTAL = list(range( 2000, 2002))
 
 # NPC Tags. Used to mark roles, etc.
-CHAR_NPC, CHAR_SHOPKEEPER, CHAR_INNKEEPER, CHAR_HEALER = range( 3000, 3004 )
+CHAR_NPC, CHAR_SHOPKEEPER, CHAR_INNKEEPER, CHAR_HEALER = list(range( 3000, 3004))
 
 def matches_description( context_set, desc_request ):
     # context_set is a list of context tags.
@@ -153,7 +153,7 @@ def matches_description( context_set, desc_request ):
     # Return a positive number if the two are in agreement, or 0 otherwise.
     num_matches = 0
 
-    for k,v in desc_request.iteritems():
+    for k,v in desc_request.items():
         if isinstance( k, tuple ):
             # We have multiple things to match.
             if v is PRESENT:

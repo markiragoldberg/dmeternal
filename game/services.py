@@ -1,12 +1,12 @@
-import spells
-import charsheet
+from . import spells
+from . import charsheet
 import pygame
-import items
+from . import items
 import random
 import copy
-import pfov
-import enchantments
-import stats
+from . import pfov
+from . import enchantments
+from . import stats
 
 GENERAL_STORE = ( items.SWORD, items.AXE, items.MACE, items.DAGGER, items.STAFF,
     items.BOW, items.POLEARM, items.ARROW, items.SHIELD, items.SLING, items.BULLET,

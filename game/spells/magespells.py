@@ -1,4 +1,4 @@
-from base import SOLAR, EARTH, WATER, FIRE, AIR, LUNAR, Spell
+from .base import SOLAR, EARTH, WATER, FIRE, AIR, LUNAR, Spell
 from .. import effects
 from .. import targetarea
 from .. import enchantments

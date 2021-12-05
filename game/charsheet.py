@@ -1,10 +1,10 @@
 import pygame
-import pygwrap
-import stats
-import rpgmenu
-import image
-from items import Item
-from spells import COLORS, COLOR_NAME, Spell
+from . import pygwrap
+from . import stats
+from . import rpgmenu
+from . import image
+from .items import Item
+from .spells import COLORS, COLOR_NAME, Spell
 
 EL_NAME = ( "Light", "Heavy", "Severe" )
 def encumberance_desc( pc, show_ceiling=True ):
@@ -307,7 +307,7 @@ class CharacterViewRedrawer( object ):
         pygwrap.draw_text( screen, pygwrap.SMALLFONT, "MP: {0}".format( it.mp_cost() ), myrect, justify = 1 )
         # Display the spell colors. Start by listing the colors.
         gemlist = list()
-        for k,v in it.gems.iteritems():
+        for k,v in it.gems.items():
             gemlist += ( k + 1, ) * v
         for t in range( it.gems_needed() ):
             if t < len( gemlist ):

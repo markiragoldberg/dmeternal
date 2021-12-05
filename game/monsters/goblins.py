@@ -1,4 +1,4 @@
-import base
+from . import base
 from .. import stats
 from .. import items
 from .. import dialogue
@@ -11,9 +11,9 @@ from .. import targetarea
 from .. import aibrain
 import random
 from .. import enchantments
-import treasuretype
-import abilities
-import animals
+from . import treasuretype
+from . import abilities
+from . import animals
 
 #  *******************
 #  ***   GOBLINS   ***

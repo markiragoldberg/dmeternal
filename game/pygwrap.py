@@ -8,8 +8,8 @@
 
 import pygame
 from itertools import chain
-import image
-import util
+from . import image
+from . import util
 import glob
 import random
 
@@ -34,12 +34,14 @@ TEXT_COLOR = (240,240,50)
 
 INIT_DONE = False
 
+pygame.init()
+
 # The FPS the game runs at.
 FPS = util.config.getint( "DEFAULT", "frames_per_second" )
 
 # Use a timer to control FPS.
 TIMEREVENT = pygame.USEREVENT
-pygame.time.set_timer(TIMEREVENT, 1000 / FPS)
+pygame.time.set_timer(TIMEREVENT, 1000 // FPS)
 
 # Remember whether or not this unit has been initialized, since we don't need
 # to initialize it more than once.
@@ -98,17 +100,17 @@ class Border( object ):
     def render( self, screen, dest ):
         """Draw this decorative border at dest on screen."""
         # We're gonna draw a decorative border to surround the provided area.
-        # Step one: Determine the size of our box. Both dimensions should be 
-        # a multiple of TEX_WIDTH. 
+        # Step one: Determine the size of our box. Both dimensions should be
+        # a multiple of TEX_WIDTH.
 
         if self.border == None:
             self.border = image.Image( self.border_name, self.border_width, self.border_width )
         if self.tex == None:
             self.tex = image.Image( self.tex_name, self.tex_width, self.tex_width )
 
-        # W32 and H32 will store the number of columns/rows. 
-        W32 = ( dest.width + self.border_width ) / self.tex_width + 1
-        H32 = ( dest.height + self.border_width ) / self.tex_width + 1
+        # W32 and H32 will store the number of columns/rows.
+        W32 = ( dest.width + self.border_width ) // self.tex_width + 1
+        H32 = ( dest.height + self.border_width ) // self.tex_width + 1
 
         # X0 and Y0 will store the upper left corner of the box.
         X0 = dest.left - ( ( ( W32 * self.tex_width ) - dest.width ) / 2 )
@@ -145,37 +147,37 @@ gold_border = Border( border_width=8, tex_width=16, border_name="sys_rixsborder.
 
 
 def truncline(text, font, maxwidth):
-        real=len(text)       
-        stext=text           
+        real=len(text)
+        stext=text
         l=font.size(text)[0]
         cut=0
-        a=0                  
+        a=0
         done=1
         old = None
         while l > maxwidth:
             a=a+1
             n=text.rsplit(None, a)[0]
-            if stext == n: 
+            if stext == n:
                 cut += 1
                 stext= n[:-cut]
             else:
                 stext = n
             l=font.size(stext)[0]
-            real=len(stext)               
-            done=0                        
-        return real, done, stext             
-        
-def wrapline(text, font, maxwidth): 
-    done=0                      
-    wrapped=[]                  
-                               
-    while not done:             
-        nl, done, stext=truncline(text, font, maxwidth) 
-        wrapped.append(stext.strip())                  
-        text=text[nl:]                                 
+            real=len(stext)
+            done=0
+        return real, done, stext
+
+def wrapline(text, font, maxwidth):
+    done=0
+    wrapped=[]
+
+    while not done:
+        nl, done, stext=truncline(text, font, maxwidth)
+        wrapped.append(stext.strip())
+        text=text[nl:]
     return wrapped
- 
- 
+
+
 def wrap_multi_line(text, font, maxwidth):
     """ returns text taking new lines into account.
     """
@@ -218,7 +220,7 @@ def draw_text( screen , font , text , rect , color = TEXT_COLOR, justify=-1, ant
     screen.set_clip( None )
 
 
-ALLOWABLE_CHARACTERS = u'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890()-=_+,.?"'
+ALLOWABLE_CHARACTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890()-=_+,.?"'
 
 def input_string( screen , font = None, redrawer = None, prompt = "Enter text below", prompt_color = (255,255,255), input_color = TEXT_COLOR, border=default_border ):
     # Input a string from the user.
@@ -324,6 +326,3 @@ if __name__ == "__main__":
         ev = pygame.event.wait()
         if ( ev.type == pygame.MOUSEBUTTONDOWN ) or ( ev.type == pygame.QUIT ) or (ev.type == pygame.KEYDOWN):
             break
-
-
-

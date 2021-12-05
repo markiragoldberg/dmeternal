@@ -1,7 +1,7 @@
 from .. import invocations
 
 # Enumerate some constants for the six spell colors.
-SOLAR, EARTH, WATER, FIRE, AIR, LUNAR = range( 6 )
+SOLAR, EARTH, WATER, FIRE, AIR, LUNAR = list(range( 6))
 
 class Spell( invocations.Invocation ):
     def __init__( self, name, desc, fx, rank=1, gems=dict(), mpfudge=0, com_tar=None, exp_tar=None, ai_tar=None, shot_anim=None ):
@@ -18,7 +18,7 @@ class Spell( invocations.Invocation ):
 
     def mp_cost( self ):
         """Return spell invocation cost."""
-        return max( (1 + sum( self.gems.itervalues() )) * (self.rank * 2 - 1 ) + self.mpfudge, 1 )
+        return max( (1 + sum( self.gems.values() )) * (self.rank * 2 - 1 ) + self.mpfudge, 1 )
 
     def gems_needed( self ):
         """Return total number of spell gems needed."""
@@ -34,14 +34,14 @@ class Spell( invocations.Invocation ):
         if right_now:
             ok = self.gems_needed() <= ( chara.total_spell_gems() - chara.spell_gems_used() ) and self.rank <= (chara.rank() + 1) // 2
             if ok:
-                for k,v in self.gems.iteritems():
+                for k,v in self.gems.items():
                     if v > chara.spell_gems_of_color(k) - chara.spell_gems_of_color_used(k):
                         ok = False
                         break
         else:
             ok = self.gems_needed() <= chara.total_spell_gems() and self.rank <= (chara.rank() + 1) // 2
             if ok:
-                for k,v in self.gems.iteritems():
+                for k,v in self.gems.items():
                     if v > chara.spell_gems_of_color(k):
                         ok = False
                         break

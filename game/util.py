@@ -20,7 +20,7 @@
 #       
 # 
 import os
-import ConfigParser
+import configparser
 
 
 USERDIR = os.path.expanduser( os.path.join( '~' , 'dmeternal' ) )
@@ -37,7 +37,7 @@ def user_dir( fname=""):
     return os.path.join(USERDIR,fname)
 
 # Load the configuration file.
-config = ConfigParser.SafeConfigParser()
+config = configparser.SafeConfigParser()
 with open(data_dir("config_defaults.cfg")) as f:
     config.readfp( f )
 if not config.read( [user_dir( "config.cfg" )] ):

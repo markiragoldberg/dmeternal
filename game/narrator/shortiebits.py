@@ -1,4 +1,4 @@
-from plots import Plot,PlotError,PlotState,Chapter
+from .plots import Plot,PlotError,PlotState,Chapter
 from .. import context
 from .. import items
 from .. import maps
@@ -205,7 +205,7 @@ class ShortieStub( Plot ):
                 prefix = "="
             elif prefix == "=":
                 prefix = "+"
-            for k,v in g2.iteritems():
+            for k,v in g2.items():
                 a,b,c = k.partition("[")
                 mod_k = b + prefix + c
                 if mod_k not in gram:

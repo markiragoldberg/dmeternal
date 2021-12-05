@@ -96,8 +96,8 @@ class Room( object ):
                 myrect = pygame.Rect( 0, 0, r.width, r.height )
                 count = 0
                 while ( count < 1000 ) and not r.area:
-                    myrect.x = random.choice( range( self.area.x , self.area.x + self.area.width - r.width ) )
-                    myrect.y = random.choice( range( self.area.y , self.area.y + self.area.height - r.height ) )
+                    myrect.x = random.choice( list(range( self.area.x , self.area.x + self.area.width - r.width)) )
+                    myrect.y = random.choice( list(range( self.area.y , self.area.y + self.area.height - r.height)) )
                     if context.MAP_ON_EDGE in r.tags and count < 500:
                         if random.randint(1,2) == 1:
                             myrect.x = random.choice(( self.area.x, self.area.x + self.area.width - r.width ))
@@ -347,7 +347,7 @@ class CastleRoom( VillageRoom ):
     def render( self, gb ):
         self.fill( gb, self.area.inflate(2,2), floor=maps.HIGROUND, wall=None )
         # Draw the walls.
-        xpips = range( self.area.x+2, self.area.x + self.area.width-2 )
+        xpips = list(range( self.area.x+2, self.area.x + self.area.width-2))
         midx = self.area.x + self.area.width // 2
         xpips.remove( midx )
         xpips.remove( midx-1 )
@@ -358,7 +358,7 @@ class CastleRoom( VillageRoom ):
             if x % 3 == 0:
                 gb.map[x][self.area.y+1].decor = maps.CASTLE_WINDOW
                 gb.map[x][self.area.y+self.area.height-2].decor = maps.CASTLE_WINDOW
-        ypips = range( self.area.y+2, self.area.y + self.area.height-2 )
+        ypips = list(range( self.area.y+2, self.area.y + self.area.height-2))
         midy = self.area.y + self.area.height // 2
         ypips.remove( midy )
         ypips.remove( midy-1 )

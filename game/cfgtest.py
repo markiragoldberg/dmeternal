@@ -1,4 +1,4 @@
-import context
+from . import context
 
     # Create the outline of a well-formed module, with these characteristics:
     # - Has enough resources to complete (temple, shops, encounters, treasure)

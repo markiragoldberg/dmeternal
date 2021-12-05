@@ -1,6 +1,6 @@
 from .. import context
 from .. context import ContextTag
-from base import Cue, Offer, Reply
+from .base import Cue, Offer, Reply
 
 #  *****************
 #  ***   HELLO   ***

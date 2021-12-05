@@ -1,7 +1,7 @@
-import stats
+from . import stats
 import random
-import animobs
-import context
+from . import animobs
+from . import context
 
 class NoEffect( object ):
     """An effect that does nothing. Good for placing anims, subclass of the rest."""
@@ -632,6 +632,6 @@ if __name__=='__main__':
     total = 0
     for t in range( 2000 ):
         total += sum( random.randint(1,dice[1]) for x in range( dice[0] ) ) + dice[2]
-    print float(total) / 2000.0
+    print(float(total) / 2000.0)
 
 

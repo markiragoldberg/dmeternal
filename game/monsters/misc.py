@@ -1,4 +1,4 @@
-import base
+from . import base
 from .. import stats
 from .. import items
 from .. import dialogue
@@ -9,9 +9,9 @@ from .. import effects
 from .. import animobs
 from .. import targetarea
 from .. import aibrain
-import animals
-import treasuretype
-import abilities
+from . import animals
+from . import treasuretype
+from . import abilities
 from .. import enchantments
 
 # Contains critters that don't quite fit in anywhere else.

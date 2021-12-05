@@ -1,5 +1,5 @@
 import inspect
-import base
+from . import base
 from .. import characters
 import random
 from .. import chargen
@@ -7,26 +7,26 @@ from .. import namegen
 from .. import context
 from .. import stats
 from .. import items
-import treasuretype
-import abilities
+from . import treasuretype
+from . import abilities
 from .. dialogue import voice
 
-import animals
-import aquan
-import auran
-import celestial
-import chaos
-import constructs
-import draconic
-import dragons
-import giants
-import goblins
-import ignan
-import misc
-import people
-import plants
-import terran
-import undead
+from . import animals
+from . import aquan
+from . import auran
+from . import celestial
+from . import chaos
+from . import constructs
+from . import draconic
+from . import dragons
+from . import giants
+from . import goblins
+from . import ignan
+from . import misc
+from . import people
+from . import plants
+from . import terran
+from . import undead
 
 # Compile the monsters into a useful list.
 MONSTER_LIST = []

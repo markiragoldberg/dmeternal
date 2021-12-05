@@ -1,4 +1,4 @@
-from plots import Plot,PlotError,PlotState
+from .plots import Plot,PlotError,PlotState
 from .. import context
 from .. import items
 from .. import maps
@@ -62,10 +62,10 @@ class BasicCave( Plot ):
     }
     def add_custom_decor( self, myscene, mymapgen ):
         if myscene.fac and not mymapgen.DECORATE:
-            if myscene.fac.primary in self.CUSTOM_DECOR_TYPES.keys():
+            if myscene.fac.primary in list(self.CUSTOM_DECOR_TYPES.keys()):
                 a,b = self.CUSTOM_DECOR_TYPES[ myscene.fac.primary ]
                 mymapgen.DECORATE = a(**b)
-            elif myscene.fac.secondary in self.CUSTOM_DECOR_TYPES.keys():
+            elif myscene.fac.secondary in list(self.CUSTOM_DECOR_TYPES.keys()):
                 a,b = self.CUSTOM_DECOR_TYPES[ myscene.fac.secondary ]
                 mymapgen.DECORATE = a(**b)
 

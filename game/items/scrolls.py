@@ -48,7 +48,7 @@ class Rank1Scroll( Stackable ):
     def stat_desc( self ):
         """Return descriptions of circle + needed gems."""
         smod = ["Circle {0}".format( self.spell.rank )]
-        for color,num in self.spell.gems.iteritems():
+        for color,num in self.spell.gems.items():
             smod.append( "{0}:{1}".format( spells.COLOR_NAME[color], num ) )
         return ", ".join( smod )
 

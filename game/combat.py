@@ -1,20 +1,20 @@
-import characters
-import teams
-import hotmaps
-import pygwrap
+from . import characters
+from . import teams
+from . import hotmaps
+from . import pygwrap
 import pygame
-import maps
+from . import maps
 import collections
-import image
-import pfov
+from . import image
+from . import pfov
 import random
-import stats
-import rpgmenu
-import animobs
-import effects
-import enchantments
-import aibrain
-import services
+from . import stats
+from . import rpgmenu
+from . import animobs
+from . import effects
+from . import enchantments
+from . import aibrain
+from . import services
 
 class TacticsRedraw( object ):
     def __init__( self, chara, comba, explo, hmap = None ):
@@ -223,7 +223,7 @@ class Combat( object ):
                 self.cstat[target].attacks_so_far += 1
             else:
                 break
-        if ( target.is_alright() and target.can_attack_of_opportunity() and self.cstat[target].can_act() 
+        if ( target.is_alright() and target.can_attack_of_opportunity() and self.cstat[target].can_act()
          and self.scene.distance(target.pos,chara.pos) <= target.get_attack_reach() and not attack_of_opportunity ):
             # Target may be able to counterattack.
             if random.randint(1,100) <= min( target.get_stat( stats.COUNTER_ATTACK ), 95 ):
@@ -398,15 +398,15 @@ class Combat( object ):
 
             else:
                 if gdi.type == pygame.KEYDOWN:
-                    if gdi.unicode == u"Q":
+                    if gdi.unicode == "Q":
                         self.camp.save(explo.screen)
                         self.no_quit = False
-                    elif gdi.unicode == u"i":
+                    elif gdi.unicode == "i":
                         explo.view_party( self.camp.party.index(chara), can_switch=False )
                         self.end_turn( chara )
-                    elif gdi.unicode == u"c":
+                    elif gdi.unicode == "c":
                         explo.view.focus( explo.screen, *chara.pos )
-                    elif gdi.unicode == u" ":
+                    elif gdi.unicode == " ":
                         self.end_turn( chara )
                 elif gdi.type == pygame.MOUSEBUTTONUP:
                     if gdi.button == 1:
@@ -558,6 +558,3 @@ class Combat( object ):
                 m.hp_damage = 0
 
 # I do not intend to create one more boring derivative fantasy RPG. I intend to create all of the boring derivative fantasy RPGs.
-
-
-

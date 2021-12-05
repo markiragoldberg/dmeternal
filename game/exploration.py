@@ -1,22 +1,22 @@
-import maps
-import pfov
-import pygwrap
+from . import maps
+from . import pfov
+from . import pygwrap
 import pygame
-import hotmaps
-import charsheet
-import items
-import dialogue
-import animobs
-import characters
+from . import hotmaps
+from . import charsheet
+from . import items
+from . import dialogue
+from . import animobs
+from . import characters
 import random
-import teams
-import combat
-import stats
-import services
-import image
-import rpgmenu
-import spells
-import pathfinding
+from . import teams
+from . import combat
+from . import stats
+from . import services
+from . import image
+from . import rpgmenu
+from . import spells
+from . import pathfinding
 
 
 # Commands should be callable objects which take the explorer and return a value.
@@ -158,11 +158,11 @@ class InvExchange( object ):
             else:
                 it = rmenu.query()
 
-            if it is -1:
+            if it == -1:
                 pcn = ( pcn + len( self.party ) - 1 ) % len( self.party )
-            elif it is 1:
+            elif it == 1:
                 pcn = ( pcn + 1 ) % len( self.party )
-            elif it is 2:
+            elif it == 2:
                 use_left_menu = not use_left_menu
             elif it:
                 # An item was selected. Transfer.
@@ -260,7 +260,7 @@ class MiniMap( object ):
         pos = self.menu.query()
         if pos:
             self.explo.view.focus( self.explo.screen, *pos )
-        elif pos is 0:
+        elif pos == 0:
             WorldExplorer( self.explo )
 
 # Rubicon Hiscock had her entire body tattooed by a cloister of Gothic monks, and in this way she became illuminated.
@@ -733,15 +733,15 @@ class Explorer( object ):
                 mymenu.quick_keys[ pygame.K_RIGHT ] = 1
 
             it = mymenu.query()
-            if it is -1:
+            if it == -1:
                 n = ( n + len( self.camp.party ) - 1 ) % len( self.camp.party )
                 pc = self.camp.party[n]
                 myredraw.csheet = charsheet.CharacterSheet(pc, screen=self.screen, camp=self.camp)
-            elif it is 1:
+            elif it == 1:
                 n = ( n + 1 ) % len( self.camp.party )
                 pc = self.camp.party[n]
                 myredraw.csheet = charsheet.CharacterSheet(pc, screen=self.screen, camp=self.camp)
-            elif it is 999:
+            elif it == 999:
                 self.do_level_training( pc )
                 keep_going = False
             elif it:
@@ -906,11 +906,11 @@ class Explorer( object ):
                 mymenu.quick_keys[ pygame.K_RIGHT ] = 1
 
             it = mymenu.query()
-            if it is -1:
+            if it == -1:
                 n = ( n + len( self.camp.party ) - 1 ) % len( self.camp.party )
                 pc = self.camp.party[n]
                 myredraw.csheet = charsheet.CharacterSheet(pc, screen=self.screen, camp=self.camp)
-            elif it is 1:
+            elif it == 1:
                 n = ( n + 1 ) % len( self.camp.party )
                 pc = self.camp.party[n]
                 myredraw.csheet = charsheet.CharacterSheet(pc, screen=self.screen, camp=self.camp)
@@ -1083,40 +1083,40 @@ class Explorer( object ):
                 self.view.overlays[ self.view.mouse_tile ] = maps.OVERLAY_CURSOR
 
                 if gdi.type == pygame.KEYDOWN:
-                    if gdi.unicode == u"1":
+                    if gdi.unicode == "1":
                         self.view_party(0)
-                    elif gdi.unicode == u"2":
+                    elif gdi.unicode == "2":
                         self.view_party(1)
-                    elif gdi.unicode == u"3":
+                    elif gdi.unicode == "3":
                         self.view_party(2)
-                    elif gdi.unicode == u"4":
+                    elif gdi.unicode == "4":
                         self.view_party(3)
-                    elif gdi.unicode == u"Q":
+                    elif gdi.unicode == "Q":
                         self.camp.save(self.screen)
                         self.no_quit = False
-                    elif gdi.unicode == u"c":
+                    elif gdi.unicode == "c":
                         self.view.focus( self.screen, *self.camp.first_living_pc().pos )
-                    elif gdi.unicode == u"m":
+                    elif gdi.unicode == "m":
                         self.cast_explo_spell(0)
-                    elif gdi.unicode == u"M":
+                    elif gdi.unicode == "M":
                         MiniMap( self )
-                    elif gdi.unicode == u"R":
+                    elif gdi.unicode == "R":
                         self.field_camp()
-                    elif gdi.unicode == u"s":
+                    elif gdi.unicode == "s":
                         services.SpellManager()(self)
-                    elif gdi.unicode == u"h" or gdi.unicode == u"?" or gdi.key == pygame.K_F1:
+                    elif gdi.unicode == "h" or gdi.unicode == "?" or gdi.key == pygame.K_F1:
                         self.alert("HELP\n ==== \n 1-4 View party member\n Q Quit and save\n c Center view\n M View map\n R Rest\n s Manage spells",False)
 
-                    elif gdi.unicode == u"*":
+                    elif gdi.unicode == "*":
                         for pc in self.camp.party:
                             pc.xp += 1000
-                    elif gdi.unicode == u"&":
+                    elif gdi.unicode == "&":
                         for x in range( self.scene.width ):
                             for y in range( self.scene.height ):
                                 self.scene.map[x][y].visible = True
-                    elif gdi.unicode == u"_":
+                    elif gdi.unicode == "_":
                         self.camp.known_spells = spells.SPELL_LIST[:]
-                    elif gdi.unicode == u"!":
+                    elif gdi.unicode == "!":
                         self.flatten_world()
 
                 elif gdi.type == pygame.QUIT:
@@ -1132,4 +1132,3 @@ class Explorer( object ):
                             self.pick_up( self.view.mouse_tile )
                     else:
                         self.pop_explo_menu()
-

@@ -9,7 +9,7 @@ from .. import container
 
 # Enumerated constants for the item slots.
 # Note that these are defined in the order in which they're applied to avatar.
-NOSLOT, BACK, FEET, BODY, HANDS, HAND2, HAND1, HEAD = range( 100, 108 )
+NOSLOT, BACK, FEET, BODY, HANDS, HAND2, HAND1, HEAD = list(range( 100, 108))
 
 class SingType( object ):
     # A singleton itemtype class; use these objects as tokens to indicate
@@ -368,30 +368,30 @@ class Clothing( Item ):
             img.render( avatar.bitmap , frame = frame )
 
 
-import axes
-import bows
-import cloaks
-import clothes
-import daggers
-import farmtools
-import gauntlets
-import gloves
-import hats
-import heavyarmor
-import helms
-import holysymbols
-import knickknacks
-import lightarmor
-import maces
-import polearms
-import potions
-import scrolls
-import shields
-import shoes
-import slings
-import staves
-import swords
-import wands
+from . import axes
+from . import bows
+from . import cloaks
+from . import clothes
+from . import daggers
+from . import farmtools
+from . import gauntlets
+from . import gloves
+from . import hats
+from . import heavyarmor
+from . import helms
+from . import holysymbols
+from . import knickknacks
+from . import lightarmor
+from . import maces
+from . import polearms
+from . import potions
+from . import scrolls
+from . import shields
+from . import shoes
+from . import slings
+from . import staves
+from . import swords
+from . import wands
 
 # Compile the items into a useful list.
 ITEM_LIST = []
@@ -432,7 +432,7 @@ harvest( wands )
 #    if i.itemtype in (WAND,POTION,GEM ):
 #        print "{0}: {1}/{2}gp".format( i, i.min_rank(), i.cost() )
 
-import enhancers
+from . import enhancers
 # Compile the enhancements into a useful list.
 def harvest_enhancements( mod ):
     for name in dir( mod ):

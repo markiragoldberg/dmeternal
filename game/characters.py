@@ -1,17 +1,17 @@
 
-import stats
-import spells
+from . import stats
+from . import spells
 import random
-import image
-import items
-import dialogue
-import effects
-import animobs
-import aibrain
+from . import image
+from . import items
+from . import dialogue
+from . import effects
+from . import animobs
+from . import aibrain
 import collections
-import util
-import cPickle
-import context
+from . import util
+import pickle
+from . import context
 
 # Reaction score constants
 FRIENDLY_THRESHOLD = 25
@@ -88,7 +88,7 @@ class Level( object ):
     @classmethod
     def can_take_level( self, pc ):
         is_legal = pc.rank() >= self.MIN_RANK
-        for k,v in self.requirements.iteritems():
+        for k,v in self.requirements.items():
             if pc.get_stat( k, include_extras=False ) < v:
                 is_legal = False
         return is_legal
@@ -103,7 +103,7 @@ class Level( object ):
         smod.append( "HP: 1d{0}".format( self.HP_DIE ) )
         smod.append( "MP: 1d{0}".format( self.MP_DIE ) )
 
-        for k,v in self.statline.iteritems():
+        for k,v in self.statline.items():
             smod.append( str(k) + ":" + "{0:+}".format( v ) )
         return ", ".join( smod )
 
@@ -381,7 +381,7 @@ class SentientSpecies( object ):
     def stat_desc( self ):
         """Return a text description of this species's stat modifiers."""
         smod = list()
-        for k,v in self.statline.iteritems():
+        for k,v in self.statline.items():
             smod.append( str(k) + ":" + "{0:+}".format( v ) )
         return ", ".join( smod )
 
@@ -853,11 +853,11 @@ class Character( stats.PhysicalThing ):
 
     def critical_hit_effect( self, roll_mod=0 ):
         return effects.TargetIs( effects.ANIMAL, on_true=(
-            effects.PercentRoll( roll_skill=stats.CRITICAL_HIT, roll_stat=None, 
+            effects.PercentRoll( roll_skill=stats.CRITICAL_HIT, roll_stat=None,
             roll_modifier=min(roll_mod*2,0), target_affects=True, on_success=(
                 effects.InstaKill( anim=animobs.CriticalHit )
             ,) )
-        ,) ) 
+        ,) )
 
     def add_attack_enhancements( self, roll, ench ):
         # Add any attack modifiers attached to this enchantment.
@@ -990,7 +990,7 @@ class Character( stats.PhysicalThing ):
 
     def total_spell_gems( self ):
         """Return the total number of spell gems posessed."""
-        sg = sum( sum( l.spell_gems.itervalues() ) for l in self.levels )
+        sg = sum( sum( l.spell_gems.values() ) for l in self.levels )
         if sg:
             sg += ( self.get_stat( stats.INTELLIGENCE ) * self.rank() + 9 ) // 20
         return sg
@@ -1037,10 +1037,10 @@ class Character( stats.PhysicalThing ):
 
     def save( self ):
         with open( util.user_dir( "c_{}.sav".format(self.name) ) , "wb" ) as f:
-            cPickle.dump( self , f, -1 )
+            pickle.dump( self , f, -1 )
     def backup( self ):
         with open( util.user_dir( "c_{}.backup".format(self.name) ) , "wb" ) as f:
-            cPickle.dump( self , f, -1 )
+            pickle.dump( self , f, -1 )
 
 
     def subject_pronoun( self ):
@@ -1073,17 +1073,16 @@ if __name__ == '__main__':
     pc.levels.append( Ninja(3) )
     pc.levels.append( Druid(3) )
 
-    print pc.rank()
-    print pc.get_stat( stats.PHYSICAL_ATTACK )
+    print(pc.rank())
+    print(pc.get_stat( stats.PHYSICAL_ATTACK ))
 
 
     pc.statline[ stats.TOUGHNESS ] = 17
-    print "HP at 17:" , pc.max_hp()
+    print("HP at 17:" , pc.max_hp())
     pc.statline[ stats.TOUGHNESS ] = 10
-    print "HP at 10:" , pc.max_hp()
+    print("HP at 10:" , pc.max_hp())
 
-    print "\n***Level Stats***"
+    print("\n***Level Stats***")
     for c in PC_CLASSES:
 
-        print c.name + ': ' + str( c.statline.cost() )
-
+        print(c.name + ': ' + str( c.statline.cost() ))

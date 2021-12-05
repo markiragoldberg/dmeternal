@@ -19,18 +19,18 @@ import copy
 import pygame
 from .. import pygwrap
 from .. import rpgmenu
-import voice
-import grammar
-import personalizer
+from . import voice
+from . import grammar
+from . import personalizer
 # from .. import characters
 from .. import services
 from .. import image
 from .. import context
 from .. context import ContextTag
-import base
-from base import Cue, Offer, Reply
-import offers
-import replies
+from . import base
+from .base import Cue, Offer, Reply
+from . import offers
+from . import replies
 import re
 
 def harvest( mod, class_to_collect ):
@@ -185,7 +185,7 @@ def build_conversation( start,npc_offers ):
         # available anchors and unlinked offers.
         possible_links = []
         for l in standard_replies:
-            if filter( l.context.matches , anchors ) and cues_accounted_for( l.destination.get_cue_list(), npc_offers ):
+            if list(filter( l.context.matches , anchors )) and cues_accounted_for( l.destination.get_cue_list(), npc_offers ):
                 possible_links.append( l )
 
         if possible_links:

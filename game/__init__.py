@@ -20,20 +20,20 @@
 #       
 # 
 
-import narrator
-import context
-import maps
+from . import narrator
+from . import context
+from . import maps
 import pygame
-import pygwrap
-import rpgmenu
-import campaign
-import util
-import cPickle
-import image
+from . import pygwrap
+from . import rpgmenu
+from . import campaign
+from . import util
+import pickle
+from . import image
 import glob
 import random
-import chargen
-import charloader
+from . import chargen
+from . import charloader
 
 VERSION_ID = "0.5.0 Alpha"
 
@@ -130,7 +130,7 @@ def load_campaign( screen ):
     if cmd:
         pygwrap.please_stand_by( screen, "Loading..." )
         with open( cmd, "rb" ) as f:
-            camp = cPickle.load( f )
+            camp = pickle.load( f )
         if camp:
             camp.play( screen )
 
@@ -139,11 +139,11 @@ def test_campaign_generator( screen ):
     for t in range( 100 ):
         nart = narrator.Narrative( camp, narrator.plots.PlotState(rank=t%5+1), adv_type="SHORTIE",start_rank=t%5+1, end_rank=5 )
         #nart.build()
-        print t
+        print(t)
 
     for p in narrator.UNSORTED_PLOT_LIST:
         if p._used > 0:
-            print "{} [{}]".format( p, p._used )
+            print("{} [{}]".format( p, p._used ))
 
 def main():
     pygame.init()

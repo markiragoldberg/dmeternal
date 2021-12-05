@@ -1,4 +1,4 @@
-import base
+from . import base
 from .. import stats
 from .. import items
 from .. import dialogue
@@ -11,9 +11,9 @@ from .. import targetarea
 from .. import aibrain
 import random
 from .. import enchantments
-import animals
-import treasuretype
-import abilities
+from . import animals
+from . import treasuretype
+from . import abilities
 
 # This file contains monsters that are not dragons proper, but which
 # belong to the GEN_DRAGON faction. Examples include lizardmen and other

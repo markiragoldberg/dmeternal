@@ -1,7 +1,7 @@
-import context
-import container
+from . import context
+from . import container
 import random
-import maps
+from . import maps
 
 W_VILLAGE = 0
 W_CITY = 1
@@ -59,7 +59,7 @@ class World( object ):
         return wme
 
     def dump_info( self, tabs = "" ):
-        print tabs + "World"
+        print(tabs + "World")
         for c in self.contents:
             if isinstance( c, maps.Scene ):
                 c.dump_info( tabs + " " )

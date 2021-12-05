@@ -1,5 +1,5 @@
 
-from plots import Plot,PlotError,Chapter
+from .plots import Plot,PlotError,Chapter
 from .. import context
 from .. import items
 from .. import maps

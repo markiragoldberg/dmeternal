@@ -1,7 +1,7 @@
 import pygame
-import pygwrap
+from . import pygwrap
 import glob
-import util
+from . import util
 
 
 MENUFONT = None
@@ -297,6 +297,6 @@ if __name__=='__main__':
 
     pygame.quit()
 
-    print n
+    print(n)
 
 

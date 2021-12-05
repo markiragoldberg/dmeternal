@@ -2,7 +2,7 @@
 
 import pygame
 import weakref
-import util
+from . import util
 
 # Keep a list of already-loaded images, to save memory when multiple objects
 # need to use the same image file.
@@ -37,9 +37,9 @@ class Image( object ):
     def render( self , screen , dest = (0,0) , frame = 0 ):
         # Render this Image onto the provided surface.
         # Start by determining the correct sub-area of the image.
-        frames_per_row = self.bitmap.get_width() / self.frame_width
+        frames_per_row = self.bitmap.get_width() // self.frame_width
         area_x = ( frame % frames_per_row ) * self.frame_width
-        area_y = ( frame / frames_per_row ) * self.frame_height
+        area_y = ( frame // frames_per_row ) * self.frame_height
         area = pygame.Rect( area_x , area_y , self.frame_width , self.frame_height )
         screen.blit(self.bitmap , dest , area )
 
@@ -55,11 +55,11 @@ class Image( object ):
 
     def tile( self , screen , dest , frame = 0 ):
         x0,y0 = dest
-        start_x = ( -x0/ 10 ) % self.frame_width - self.frame_width
-        start_y = ( -y0/ 10 ) % self.frame_height - self.frame_height
+        start_x = ( -x0 / 10 ) % self.frame_width - self.frame_width
+        start_y = ( -y0 / 10 ) % self.frame_height - self.frame_height
 
-        for x in range( 0 , screen.get_width() / self.frame_width + 2 ):
-            for y in range( 0 , screen.get_height() / self.frame_height + 2 ):
+        for x in range( 0 , screen.get_width() // self.frame_width + 2 ):
+            for y in range( 0 , screen.get_height() // self.frame_height + 2 ):
                 self.render( screen , (x * self.frame_width + start_x , y * self.frame_height + start_y ) , frame )
 
 
@@ -91,6 +91,3 @@ if __name__ == '__main__':
         ev = pygame.event.wait()
         if ( ev.type == pygame.MOUSEBUTTONDOWN ) or ( ev.type == pygame.QUIT ) or (ev.type == pygame.KEYDOWN):
             break
-
-
-

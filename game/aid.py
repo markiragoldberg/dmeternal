@@ -3,7 +3,7 @@
 # not be given lightly; although each Aid object can be used only once, try to
 # make sure there's no way to scum Aid, since it's powerful stuff.
 
-import items
+from . import items
 import random
 
 class ProvisionAid( object ):

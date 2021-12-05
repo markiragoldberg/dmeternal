@@ -1,21 +1,21 @@
 import pygame
-import image
-import weakref
-import characters
 import math
-import pfov
+import weakref
 import collections
-import pygwrap
-import enchantments
-import items
-import context
 import random
-import monsters
-import container
+from . import image
+from . import characters
+from . import pfov
+from . import pygwrap
+from . import enchantments
+from . import items
+from . import context
+from . import monsters
+from . import container
 
 # Enumerated constants for sprite sheets.
 SPRITE_GROUND, SPRITE_WALL, SPRITE_BORDER, SPRITE_INTERIOR, SPRITE_FLOOR, \
- SPRITE_DECOR, SPRITE_CHEST, SPRITE_SIGNS = range( 8 )
+ SPRITE_DECOR, SPRITE_CHEST, SPRITE_SIGNS = list(range( 8))
 
 class SingTerrain( object ):
     # A singleton terrain class; use these objects as tokens for maps.
@@ -569,7 +569,7 @@ class Scene( object ):
             return repr( self )
 
     def dump_info( self, tabs = "" ):
-        print "{0}{1} (lvl{2})".format( tabs, self.name, getattr( self, "rank", 0 ) )
+        print("{0}{1} (lvl{2})".format( tabs, self.name, getattr( self, "rank", 0 ) ))
         for c in self.contents:
             if isinstance( c, Scene ):
                 c.dump_info( tabs + " " )
@@ -607,7 +607,7 @@ SCROLL_STEP = 12
 class SceneView( object ):
     def __init__( self, scene ):
         self.sprites = dict()
-        for k,v in scene.sprites.iteritems():
+        for k,v in scene.sprites.items():
             self.sprites[k] = image.Image( v, 54, 54 )
         self.extrasprite = image.Image( "sceneview_extras.png", 54, 54 )
         self.overlays = dict()
@@ -827,10 +827,10 @@ class SceneView( object ):
             elif isinstance( m, items.Item ):
                 itemmap[ tuple( m.pos ) ] = True
 
-        x_min = self.map_x( *screen_area.topleft ) - 1
-        x_max = self.map_x( *screen_area.bottomright )
-        y_min = self.map_y( *screen_area.topright ) - 1
-        y_max = self.map_y( *screen_area.bottomleft )
+        x_min = math.floor(self.map_x( *screen_area.topleft ) - 1)
+        x_max = math.floor(self.map_x( *screen_area.bottomright ))
+        y_min = math.floor(self.map_y( *screen_area.topright ) - 1)
+        y_max = math.floor(self.map_y( *screen_area.bottomleft ))
 
         tile_x,tile_y = self.mouse_tile
 
@@ -917,5 +917,3 @@ class SceneView( object ):
 
         self.phase = ( self.phase + 1 ) % 600
         self.mouse_tile = ( tile_x, tile_y )
-
-

@@ -1,4 +1,4 @@
-import voice
+from . import voice
 
 """ Style Guide: When writing dialogue, try to follow the following rules.
     - Do not use contractions.
@@ -44,7 +44,7 @@ class PTEntry( object ):
         self.requires = requires
     def fits_voice( self, npc_voice ):
         ok = True
-        for k,v in self.requires.iteritems():
+        for k,v in self.requires.items():
             if v:
                 # This key is required.
                 ok = ok and ( k in npc_voice )

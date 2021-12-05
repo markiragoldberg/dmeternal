@@ -1,4 +1,4 @@
-import base
+from . import base
 from .. import stats
 from .. import items
 from .. import dialogue
@@ -9,8 +9,8 @@ from .. import invocations
 from .. import effects
 from .. import animobs
 from .. import targetarea
-import treasuretype
-import abilities
+from . import treasuretype
+from . import abilities
 
 
 class Barbarian( base.Monster ):

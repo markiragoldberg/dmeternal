@@ -19,27 +19,27 @@
 #       MA 02110-1301, USA.
 #       
 # 
-import util
-import charsheet
+from . import util
+from . import charsheet
 import glob
-import cPickle
-import stats
-import combat
-import context
+import pickle
+from . import stats
+from . import combat
+from . import context
 import random
-import waypoints
-import pfov
-import exploration
-import pygwrap
-import enchantments
+from . import waypoints
+from . import pfov
+from . import exploration
+from . import pygwrap
+from . import enchantments
 import collections
-import container
-import maps
-import spells
-import monsters
-import characters
-import chargen
-import narrator
+from . import container
+from . import maps
+from . import spells
+from . import monsters
+from . import characters
+from . import chargen
+from . import narrator
 
 
 class Campaign( object ):
@@ -72,7 +72,7 @@ class Campaign( object ):
         candidates = list()
         for spell in spells.SPELL_LIST:
             s_ok = True
-            for k in spell.gems.iterkeys():
+            for k in spell.gems.keys():
                 if not has_color[k]:
                     s_ok = False
             if s_ok:
@@ -132,7 +132,7 @@ class Campaign( object ):
         if screen:
             pygwrap.please_stand_by( screen, "Saving..." )
         with open( util.user_dir( "rpg_" + self.name + ".sav" ) , "wb" ) as f:
-            cPickle.dump( self , f, -1 )
+            pickle.dump( self , f, -1 )
 
     def activate_monster( self, mon ):
         """Prepare this monster for combat."""
@@ -256,7 +256,7 @@ def browse_pcs( screen ):
     charsheets = dict()
     for fname in file_list:
         with open( fname, "rb" ) as f:
-            pc = cPickle.load( f )
+            pc = pickle.load( f )
         if pc:
             pc_list.append( pc )
             charsheets[ pc ] = charsheet.CharacterSheet( pc , screen=screen )
@@ -290,7 +290,7 @@ class random_party( list ):
         """Create a PC with the given job."""
         oldpc = None
         # Munchkins can change the number "5" to something obscene.
-        for t in xrange( 5 ):
+        for t in range( 5 ):
             species = random.choice( characters.PC_SPECIES )
             gender = random.randint(0,1)
             newpc = characters.Character( species=species(), gender=gender )

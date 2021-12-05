@@ -1,4 +1,4 @@
-from plots import Plot,PlotError
+from .plots import Plot,PlotError
 from .. import context
 from .. import items
 from .. import maps

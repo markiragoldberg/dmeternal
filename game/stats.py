@@ -101,7 +101,7 @@ PUBLIC_STATS =  PRIMARY_STATS + (PHYSICAL_ATTACK,PHYSICAL_DEFENSE,MAGIC_ATTACK,M
 
 
 # Gender tags
-FEMALE, MALE, NEUTER = range( 3 )
+FEMALE, MALE, NEUTER = list(range( 3))
 # "NEUTER" is probably a bad word for this constant.
 GENDER = ( "Female", "Male", "Neither" )
 SUBJECT_PRONOUN = ( "she", "he", "ze" )
@@ -115,7 +115,7 @@ class StatMod( dict ):
     def cost( self ):
         """Return the gp cost of these stat bonuses."""
         it = 0
-        for stat,val in self.iteritems():
+        for stat,val in self.items():
             if val > 0:
                 it += val * ( val + 1 ) * stat.cost_mod // 10
             elif self[ stat ] < 0:
@@ -200,7 +200,7 @@ if __name__ == '__main__':
     armor[ STEALTH ] = -40
     armor[ PHYSICAL_DEFENSE ] = 40
 
-    print armor.cost()
+    print(armor.cost())
 
     with open( "test.sav", "wb" ) as f:
         pickle.dump( armor , f, -1 )
@@ -208,8 +208,8 @@ if __name__ == '__main__':
     with open( "test.sav", "rb" ) as f2:
         a2 = pickle.load( f2 )
 
-    print a2.cost()
-    print a2[ PHYSICAL_DEFENSE ]
+    print(a2.cost())
+    print(a2[ PHYSICAL_DEFENSE ])
 
 
 
