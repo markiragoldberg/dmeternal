@@ -174,11 +174,11 @@ class Shop( object ):
             mymenu.set_item_by_position( last_selected )
             it = mymenu.query()
             last_selected = mymenu.selected_item
-            if it is -1:
+            if it == -1:
                 n = ( explo.camp.party.index(self.pc) + len( explo.camp.party ) - 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[self.pc]
-            elif it is 1:
+            elif it == 1:
                 n = ( explo.camp.party.index(self.pc) + 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[self.pc]
@@ -242,11 +242,11 @@ class Shop( object ):
 
             it = mymenu.query()
             last_item = mymenu.selected_item
-            if it is -1:
+            if it == -1:
                 n = ( explo.camp.party.index(self.pc) + len( explo.camp.party ) - 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[self.pc]
-            elif it is 1:
+            elif it == 1:
                 n = ( explo.camp.party.index(self.pc) + 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[self.pc]
@@ -291,11 +291,11 @@ class Shop( object ):
             mymenu.quick_keys[ pygame.K_RIGHT ] = 1
 
             it = mymenu.query()
-            if it is -1:
+            if it == -1:
                 n = ( explo.camp.party.index(self.pc) + len( explo.camp.party ) - 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[self.pc]
-            elif it is 1:
+            elif it == 1:
                 n = ( explo.camp.party.index(self.pc) + 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[self.pc]
@@ -328,11 +328,11 @@ class Shop( object ):
 
         while keep_going:
             it = mymenu.query()
-            if it is -1:
+            if it == -1:
                 n = ( explo.camp.party.index(self.pc) + len( explo.camp.party ) - 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[self.pc]
-            elif it is 1:
+            elif it == 1:
                 n = ( explo.camp.party.index(self.pc) + 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[self.pc]
@@ -402,11 +402,11 @@ class SpellManager( object ):
             mymenu.quick_keys[ pygame.K_RIGHT ] = 1
 
             it = mymenu.query()
-            if it is -1:
+            if it == -1:
                 n = ( explo.camp.party.index(self.pc) + len( explo.camp.party ) - 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[ self.pc ]
-            elif it is 1:
+            elif it == 1:
                 n = ( explo.camp.party.index(self.pc) + 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[ self.pc ]
@@ -433,11 +433,11 @@ class SpellManager( object ):
             mymenu.quick_keys[ pygame.K_RIGHT ] = 1
 
             it = mymenu.query()
-            if it is -1:
+            if it == -1:
                 n = ( explo.camp.party.index(self.pc) + len( explo.camp.party ) - 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[ self.pc ]
-            elif it is 1:
+            elif it == 1:
                 n = ( explo.camp.party.index(self.pc) + 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[ self.pc ]
@@ -463,11 +463,11 @@ class SpellManager( object ):
 
         while keep_going:
             it = mymenu.query()
-            if it is -1:
+            if it == -1:
                 n = ( explo.camp.party.index(self.pc) + len( explo.camp.party ) - 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[ self.pc ]
-            elif it is 1:
+            elif it == 1:
                 n = ( explo.camp.party.index(self.pc) + 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[ self.pc ]
@@ -494,11 +494,11 @@ class SpellManager( object ):
             mymenu.quick_keys[ pygame.K_RIGHT ] = 1
 
             it = mymenu.query()
-            if it is -1:
+            if it == -1:
                 n = ( explo.camp.party.index(self.pc) + len( explo.camp.party ) - 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[ self.pc ]
-            elif it is 1:
+            elif it == 1:
                 n = ( explo.camp.party.index(self.pc) + 1 ) % len( explo.camp.party )
                 self.pc = explo.camp.party[n]
                 myredraw.csheet = self.charsheets[ self.pc ]
