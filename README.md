@@ -3,7 +3,7 @@ dmeternal
 
 Dungeon Monkey Eternal- Third game in the dungeon monkey series, first written in Python.
 
-Requires Python 2 and PyGame.
+Requires Python 3 and PyGame.
 
 ![Screenshot](image/screenshot.png)
 
@@ -17,7 +17,7 @@ constructed world.
 INSTALLATION
 ============
 
-This game requires Pygame and Python 2.6 or 2.7 to be installed on your system.
+This game requires Pygame and Python 3 to be installed on your system.
 Do that first.
 
   https://www.python.org/
