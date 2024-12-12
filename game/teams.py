@@ -328,7 +328,7 @@ class Team( object ):
                 print("Apparently an NPC boss...")
             print(self.boss.desc())
         m_pts = ( m_pts * xp_value ) // ( min( max_rank, mon_rank) * 100 )
-        return m_pts
+        return int(m_pts)
 
     def build_encounter( self, gb ):
         min_rank = min( int( self.rank * 0.7 ), self.rank - 2 )
